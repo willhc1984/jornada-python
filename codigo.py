@@ -1,5 +1,6 @@
 import pyautogui
 import time
+import pandas
 
 # Define delay entre comandos
 pyautogui.PAUSE = 1.5
@@ -21,20 +22,41 @@ pyautogui.write("pythonimpressionador@gmail.com")
 pyautogui.click(x=441, y=470)
 pyautogui.write("123")
 pyautogui.press("enter")
-pyautogui.click(x=840, y=261)
-pyautogui.write("1")
+
+time.sleep(3)
+
+# Importar a base de dados
+tabela = pandas.read_csv("produtos.csv")
+
+pyautogui.click(x=919, y=256)
+
+codigo = "MOLO000251"
+pyautogui.write(codigo)
+
 pyautogui.press("tab")
-pyautogui.write("Samsung")
+marca = "Logitech"
+pyautogui.write(marca)
+
 pyautogui.press("tab")
-pyautogui.write("Celular")
+tipo = "Mouse"
+pyautogui.write(tipo)
+
 pyautogui.press("tab")
-pyautogui.write("Eletronico")
+categoria = "1"
+pyautogui.write(categoria)
+
 pyautogui.press("tab")
-pyautogui.write("12,50")
+preco_unitario = "25.95"
+pyautogui.write(preco_unitario)
+
 pyautogui.press("tab")
-pyautogui.write("10,50")
+custo = "6.5"
+pyautogui.write(custo)
+
 pyautogui.press("tab")
-pyautogui.write("produto teste")
+obs = "NaN"
+pyautogui.write(obs)
+
 pyautogui.press("tab")
 pyautogui.press("enter")
 
