@@ -3,7 +3,7 @@ import time
 import pandas
 
 # Define delay entre comandos
-pyautogui.PAUSE = 1.5
+pyautogui.PAUSE = 0.5
 
 # Abrir Chrome e acessar login do site
 pyautogui.press("win")
@@ -28,36 +28,43 @@ time.sleep(3)
 # Importar a base de dados
 tabela = pandas.read_csv("produtos.csv")
 
-pyautogui.click(x=919, y=256)
+# Cadastra os produtos no arquivo csv
+for linha in tabela.index:
+    pyautogui.click(x=919, y=256)
 
-codigo = "MOLO000251"
-pyautogui.write(codigo)
+    codigo = tabela.loc[linha, "codigo"]
+    pyautogui.write(codigo)
 
-pyautogui.press("tab")
-marca = "Logitech"
-pyautogui.write(marca)
+    pyautogui.press("tab")
+    marca = tabela.loc[linha, "marca"]
+    pyautogui.write(marca)
 
-pyautogui.press("tab")
-tipo = "Mouse"
-pyautogui.write(tipo)
+    pyautogui.press("tab")
+    tipo = tabela.loc[linha, "tipo"]
+    pyautogui.write(tipo)
 
-pyautogui.press("tab")
-categoria = "1"
-pyautogui.write(categoria)
+    pyautogui.press("tab")
+    categoria = tabela.loc[linha, "categoria"]
+    pyautogui.write(str(categoria))
 
-pyautogui.press("tab")
-preco_unitario = "25.95"
-pyautogui.write(preco_unitario)
+    pyautogui.press("tab")
+    preco_unitario = tabela.loc[linha, "preco_unitario"]
+    pyautogui.write(str(preco_unitario))
 
-pyautogui.press("tab")
-custo = "6.5"
-pyautogui.write(custo)
+    pyautogui.press("tab")
+    custo = tabela.loc[linha, "custo"]
+    pyautogui.write(str(custo))
 
-pyautogui.press("tab")
-obs = "NaN"
-pyautogui.write(obs)
+    pyautogui.press("tab")
+    obs = tabela.loc[linha, "obs"]
 
-pyautogui.press("tab")
-pyautogui.press("enter")
+    if obs != "NaN":
+        pyautogui.write(str(obs))
+
+    pyautogui.press("tab")
+    pyautogui.press("enter")
+
+    pyautogui.scroll(10000)
+
 
 # pyautogui -> cria automações com python
